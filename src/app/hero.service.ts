@@ -8,9 +8,6 @@ import { Observable, of } from 'rxjs'; //of is a symbol here too.
 //RxJS (Reactive Extensions Library for JS) is a library for reactive programming using Observables, to make it easier to compose asynchronous or callback-based code
 
 
-
-
-
 @Injectable({  //annotates the class w. the @Injectable decorator. unlike React you don't have to say Class. It just is. will be apart of the dependency injection system. Now the HeroService class (from hero.service.ts) will provide an injectable service and its own injected dependencies.
   providedIn: 'root'
   //this ^ registers the provider, which is needed to 'create or deliver a service.' This one instantiates the class to provide the service.
