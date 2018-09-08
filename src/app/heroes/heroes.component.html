@@ -1,0 +1,16 @@
+<h2>{{hero.name | uppercase}} Details</h2>
+<div><span>id: </span>{{hero.id}}</div>
+<div><span>name: </span>{{hero.name}}</div>
+
+
+<!-- //You are using two-way data binding with the ngModel directive. -->
+
+<div>
+  <label>name:
+    <input [(ngModel)]="hero.name" placeholder="name">
+  </label>
+</div>
+
+
+<!-- ngModel 'Creates a FormControl instance from a domain model and binds it to a form control element.'
+Need to import in app.module.ts -->
