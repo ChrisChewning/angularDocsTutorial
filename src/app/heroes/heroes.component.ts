@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 
-import { HEROES } from '../mock-heroes';
+import { HeroService } from '../hero.service';
 
 //NOTE: when you type in your bash (CLI, command line interface in Angular):  ng generate component <name>   you get 4 files and an update. example:
 // CREATE src/app/doggos/doggos.component.css (0 bytes)
@@ -29,12 +29,20 @@ import { HEROES } from '../mock-heroes';
 
 export class HeroesComponent implements OnInit {
 
-  heroes = HEROES; //'exposes these heroes for binding' updated nexts line.
+  heroes: Hero[]; //'exposes these heroes for binding' updated nexts line.
   selectedHero: Hero;
 
-  constructor() { }
+  // constructor() { } originally was this. updated to this...
+  constructor(private heroService: HeroService) { }
+  //https://angular.io/tutorial/toh-pt4#inject-the-heroservice
+
+//HeroServices.getHeroes() method.
+  getHeroes(): void {
+  this.heroes = this.heroService.getHeroes();
+}
 
   ngOnInit() { //lifecycle hook used for heavy init logic & fetching data. like React's componentDidMount.
+  this.getHeroes(); //call the getHeroes() function
   }
 
   onSelect(hero: Hero): void {
