@@ -1,16 +1,26 @@
-<h2>{{hero.name | uppercase}} Details</h2>
-<div><span>id: </span>{{hero.id}}</div>
-<div><span>name: </span>{{hero.name}}</div>
 
+<h2>My Heroes</h2>
+<ul class="heroes">
+  <!-- *ngFor si Angular's repeater directive. repeat host event (<li>) for each element in a list. It's a loop. -->
+  <li *ngFor="let hero of heroes"
+    [class.selected]="hero === selectedHero"
+    (click)="onSelect(hero)">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
 
-<!-- //You are using two-way data binding with the ngModel directive. -->
+<div *ngIf="selectedHero">
 
-<div>
-  <label>name:
-    <input [(ngModel)]="hero.name" placeholder="name">
-  </label>
+  <h2>{{selectedHero.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{selectedHero.id}}</div>
+  <div>
+    <label>name:
+      <!-- 2-way binding -->
+      <input [(ngModel)]="selectedHero.name" placeholder="name">
+    </label>
+  </div>
+
 </div>
-
 
 <!-- ngModel 'Creates a FormControl instance from a domain model and binds it to a form control element.'
 Need to import in app.module.ts -->

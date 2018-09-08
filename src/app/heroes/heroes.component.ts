@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 
+import { HEROES } from '../mock-heroes';
+
 //NOTE: when you type in your bash (CLI, command line interface in Angular):  ng generate component <name>   you get 4 files and an update. example:
 // CREATE src/app/doggos/doggos.component.css (0 bytes)
 // CREATE src/app/doggos/doggos.component.html (25 bytes)
@@ -26,14 +28,25 @@ import { Hero } from '../hero';
 })
 
 export class HeroesComponent implements OnInit {
-  hero: Hero = {
-    id: 1,
-    name: 'Windstorm'
-  };
+
+  heroes = HEROES; //'exposes these heroes for binding' updated nexts line.
+  selectedHero: Hero;
+
+
+// don't need: 
+  // hero: Hero = {
+  //   id: 1,
+  //   name: 'Windstorm'
+  // };
+
 
   constructor() { }
 
-  ngOnInit() { //lifecycle hook used for heavy init logic & fetching data. like React's componentDidMount. you used
+  ngOnInit() { //lifecycle hook used for heavy init logic & fetching data. like React's componentDidMount.
+  }
+
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
   }
 
 }
