@@ -1,26 +1,20 @@
 
 <h2>My Heroes</h2>
 <ul class="heroes">
-  <!-- *ngFor si Angular's repeater directive. repeat host event (<li>) for each element in a list. It's a loop. -->
+  <!-- *ngFor is a loop. It's Angular's repeater directive. repeat host event (<li>) for each element in a list. ng=angular For = for loop-->
+  <!-- The syntax is *ngFor="let <value> of <collection>". -->
   <li *ngFor="let hero of heroes"
     [class.selected]="hero === selectedHero"
     (click)="onSelect(hero)">
+<!-- 1st part of loop is over. -->
+
     <span class="badge">{{hero.id}}</span> {{hero.name}}
+<!-- this part is like what I've done with .map in React. It is inside the <li> tags, which has to be inside the <ul> tags.  -->
   </li>
+
 </ul>
 
-<div *ngIf="selectedHero">
 
-  <h2>{{selectedHero.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{selectedHero.id}}</div>
-  <div>
-    <label>name:
-      <!-- 2-way binding -->
-      <input [(ngModel)]="selectedHero.name" placeholder="name">
-    </label>
-  </div>
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
 
-</div>
-
-<!-- ngModel 'Creates a FormControl instance from a domain model and binds it to a form control element.'
-Need to import in app.module.ts -->
+<!-- this HeroesComponent will bind to the hero component through this line. Specifically, it binds  to the spot in hero.component.ts  @Input() hero: Hero;  Remember, at the top of that file you put Input in the imports.  -->

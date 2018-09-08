@@ -32,14 +32,6 @@ export class HeroesComponent implements OnInit {
   heroes = HEROES; //'exposes these heroes for binding' updated nexts line.
   selectedHero: Hero;
 
-
-// don't need: 
-  // hero: Hero = {
-  //   id: 1,
-  //   name: 'Windstorm'
-  // };
-
-
   constructor() { }
 
   ngOnInit() { //lifecycle hook used for heavy init logic & fetching data. like React's componentDidMount.
