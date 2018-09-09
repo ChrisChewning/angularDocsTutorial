@@ -29,6 +29,7 @@ import { HeroService } from '../hero.service';
 
 export class HeroesComponent implements OnInit {
 
+
   heroes: Hero[]; //'exposes these heroes for binding' updated nexts line.
   selectedHero: Hero;
 
@@ -36,9 +37,13 @@ export class HeroesComponent implements OnInit {
   constructor(private heroService: HeroService) { }
   //https://angular.io/tutorial/toh-pt4#inject-the-heroservice
 
-//HeroServices.getHeroes() method.
-  getHeroes(): void {
-  this.heroes = this.heroService.getHeroes();
+//points to the HeroServices.getHeroes() method in hero.service.ts. We are using this b.c we need this to be asynchronous. We wait for the Observable (in hero.service.ts) 'to emit the array of heroes— which could happen now or several minutes from now. Then subscribe passes the emitted array to the callback, which sets the component's heroes property.'
+
+// This asynchronous approach will work when the HeroService requests heroes from the server.
+
+getHeroes(): void {
+  this.heroService.getHeroes()
+      .subscribe(heroes => this.heroes = heroes); //
 }
 
   ngOnInit() { //lifecycle hook used for heavy init logic & fetching data. like React's componentDidMount.
